@@ -20,5 +20,7 @@ if __name__ == "__main__":
     a = api_coord.obtaining_information()
     print(a)
 
-    # api_aeroplanes = Api_Aeroplanes(a)
-    # print(json.dumps(api_aeroplanes.obtaining_information(), indent=4))
+    api_aeroplanes = Api_Aeroplanes(a)
+    json_path = Path(__file__).resolve().parent.parent / "data" / "aeroplanes.json"
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(api_aeroplanes.obtaining_information(), f, indent=4, ensure_ascii=False)

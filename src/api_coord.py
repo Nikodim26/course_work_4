@@ -12,7 +12,7 @@ class Api_Coord(APIAdapter):
 
     def __init__(self, country: str):
         super().__init__()
-        self.openstreetmap_url = "https://nominatim.openstreetmap.org/search"
+        self.url = "https://nominatim.openstreetmap.org/search"
         self.country = country
 
     def obtaining_information(self) -> dict:
@@ -28,7 +28,7 @@ class Api_Coord(APIAdapter):
         try:
             for i in range(3):
                 logger.info(f"Делаю запрос - {i + 1} попытка")
-                response = get(url=self.openstreetmap_url, params=params_nominatim, headers=headers_nominatim)
+                response = get(url=self.url, params=params_nominatim, headers=headers_nominatim)
                 if str(response.status_code)[0] == "2":
                     logger.info(f"Ответ получен: код {response.status_code}")
                     geo_coordinates = response.json()[0].get("boundingbox")
