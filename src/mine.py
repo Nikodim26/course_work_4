@@ -4,6 +4,7 @@ from pathlib import Path
 
 from api_aeroplanes import Api_Aeroplanes
 from api_coord import Api_Coord
+from information_processing import Information_Processing
 
 log_path = Path(__file__).resolve().parent.parent / "logs" / "main.log"
 logging.basicConfig(
@@ -26,3 +27,6 @@ if __name__ == "__main__":
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(api_aeroplanes.obtaining_information(), f, indent=4, ensure_ascii=False)
     logger.info(f'Создан json-файл со списком самолетов')
+
+    a=Information_Processing()
+    print(len(a.creating_a_list_of_aircraft()))

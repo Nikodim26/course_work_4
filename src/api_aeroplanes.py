@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 class Api_Aeroplanes(APIAdapter):
-
+    """Класс объекта, отвечающего за получение инормации о самолетах в заданном квадрате"""
     def __init__(self, coordinates: dict) -> None:
         super().__init__()
         self.coordinates = coordinates
@@ -26,6 +26,7 @@ class Api_Aeroplanes(APIAdapter):
                     logger.info(f"Ответ получен: код {response.status_code}")
                     result = response.json()["states"]
 
+                    # Фильтрация дублей записей (вдруг есть)
                     for l in result:
                         if not l in aeroplanes_list:
                             aeroplanes_list.append(l)
