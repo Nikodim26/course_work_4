@@ -14,6 +14,7 @@ logging.basicConfig(
     datefmt="%d-%m-%Y в %H:%M:%S",
     format="%(levelname)s: %(asctime)s %(name)s %(message)s",
 )
+logger = logging.getLogger(__name__)
 
 if __name__ == "__main__":
     api_coord = Api_Coord("Germany")
@@ -24,3 +25,4 @@ if __name__ == "__main__":
     json_path = Path(__file__).resolve().parent.parent / "data" / "aeroplanes.json"
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(api_aeroplanes.obtaining_information(), f, indent=4, ensure_ascii=False)
+    logger.info(f'Создан json-файл со списком самолетов')

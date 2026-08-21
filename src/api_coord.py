@@ -42,5 +42,5 @@ class Api_Coord(APIAdapter):
         except Exception as e:
             logger.error(e)
             return {}
-
+        logger.info(f'Получены координаты "квадрата" поиска самолетов')
         return result

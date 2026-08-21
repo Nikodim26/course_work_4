@@ -35,4 +35,5 @@ class Api_Aeroplanes(APIAdapter):
             logger.error(e)
             return []
 
+        logger.info(f'Получен список самолетов в заданном "квадрате"')
         return aeroplanes_list
