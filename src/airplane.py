@@ -7,3 +7,5 @@ class Airplane():
         self.velocity=velocity
         self.geo_altitude=geo_altitude
 
+    def __gt__(self, other):
+        return self.velocity > other.velocity and self.geo_altitude > other.geo_altitude

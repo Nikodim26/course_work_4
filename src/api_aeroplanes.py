@@ -20,7 +20,6 @@ class Api_Aeroplanes(APIAdapter):
     def obtaining_information(self) -> None:
         """Получение информации о самолетах в координатах страны"""
 
-        aeroplanes_list = []
         try:
             for i in range(3):
                 logger.info(f"Делаю запрос - {i + 1} попытка")
@@ -30,21 +29,10 @@ class Api_Aeroplanes(APIAdapter):
                     result = response.json()["states"]
 
                     # Фильтрация дублей записей (вдруг есть)
+                    aeroplanes_list=[]
+
                     for dt in result:
-                        good: bool = True  # Годность записи для создания объекта
-
-                        # Замена значений скорости и высоты с Null на 0
-                        dt[9] = 0 if dt[9] is None else dt[9]
-                        dt[13] = 0 if dt[13] is None else dt[13]
-
-                        # Исключение абсурдных случаев
-                        if dt[9] < 0 or dt[13] < 0 or dt[0] is None or dt[2] is None:
-                            good = False
-                        if dt[9] == 0 and dt[13] > 0:
-                            good = False
-
-                        # Создается фильтрованный список
-                        if not dt in aeroplanes_list and good:
+                        if not dt in aeroplanes_list:
                             aeroplanes_list.append(dt)
 
                         # Запись в файл
@@ -52,7 +40,8 @@ class Api_Aeroplanes(APIAdapter):
                         with open(json_path, "w", encoding="utf-8") as f:
                             json.dump(aeroplanes_list, f, indent=4, ensure_ascii=False)
 
-                        logger.info(f'Получена запись данных самолетов в заданном "квадрате" в файл')
+                        logger.info(f'Создана запись данных самолетов в заданном "квадрате" в файл')
+
                     break
 
         except Exception as e:

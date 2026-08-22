@@ -1,9 +1,10 @@
 import logging
 from pathlib import Path
 
+from airplane import Airplane
 from api_aeroplanes import Api_Aeroplanes
 from api_coord import Api_Coord
-from information_processing import Aircraft_Creation
+from aircraft_creation import Aircraft_Creation
 
 log_path = Path(__file__).resolve().parent.parent / "logs" / "main.log"
 logging.basicConfig(
@@ -16,15 +17,37 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-api_coord = Api_Coord("Germany")
-coordinates = api_coord.coordinates
-print(coordinates)
+# api_coord = Api_Coord("Germany")
+# coordinates = api_coord.coordinates
+# print(coordinates)
+#
+# api_aeroplanes = Api_Aeroplanes(coordinates)
+# api_aeroplanes.obtaining_information()
+#
+# aeroplanes = Aircraft_Creation().aeroplanes_list
+#
+#
+# V_max=0
+# H_max=0
+# aeroplane_max=aeroplanes[0]
+#
+# for aeroplane in aeroplanes:
+#     if aeroplane>aeroplane_max:
+#         aeroplane_max=aeroplane
+#
+#     if aeroplane.velocity>V_max:
+#         V_max=aeroplane.velocity
+#
+#     if aeroplane.geo_altitude > H_max:
+#         H_max = aeroplane.geo_altitude
+#
+# print(aeroplane_max.velocity)
+# print(V_max)
+# print(aeroplane_max.geo_altitude)
+# print(H_max)
 
-api_aeroplanes = Api_Aeroplanes(coordinates)
-api_aeroplanes.obtaining_information()
+a1 = Airplane(*["39de4b", "France", 243.42, 10789.92])
+a2 = Airplane(*["36de4b", "Germany", 143.42, 1789.92])
 
-aeroplanes = Aircraft_Creation()
-a = aeroplanes.aeroplanes_list
-print(a)
-print(len(a))
-print(type(a[0]))
+aircraft_creation = Aircraft_Creation()
+print(aircraft_creation.comparison_by_speed_and_height(a2,a1))
