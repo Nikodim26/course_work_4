@@ -1,10 +1,9 @@
-import json
 import logging
 from pathlib import Path
 
 from api_aeroplanes import Api_Aeroplanes
 from api_coord import Api_Coord
-from information_processing import Information_Processing
+from information_processing import Aircraft_Creation
 
 log_path = Path(__file__).resolve().parent.parent / "logs" / "main.log"
 logging.basicConfig(
@@ -17,16 +16,15 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-if __name__ == "__main__":
-    api_coord = Api_Coord("Germany")
-    a = api_coord.obtaining_information()
-    print(a)
+api_coord = Api_Coord("Germany")
+coordinates = api_coord.coordinates
+print(coordinates)
 
-    api_aeroplanes = Api_Aeroplanes(a)
-    json_path = Path(__file__).resolve().parent.parent / "data" / "aeroplanes.json"
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(api_aeroplanes.obtaining_information(), f, indent=4, ensure_ascii=False)
-    logger.info(f'Создан json-файл со списком самолетов')
+api_aeroplanes = Api_Aeroplanes(coordinates)
+api_aeroplanes.obtaining_information()
 
-    a=Information_Processing()
-    print(len(a.creating_a_list_of_aircraft()))
+aeroplanes = Aircraft_Creation()
+a = aeroplanes.aeroplanes_list
+print(a)
+print(len(a))
+print(type(a[0]))
