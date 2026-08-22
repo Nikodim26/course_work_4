@@ -22,7 +22,11 @@ logger = logging.getLogger(__name__)
 # print(coordinates)
 #
 # api_aeroplanes = Api_Aeroplanes(coordinates)
-# api_aeroplanes.obtaining_information()
+# print(api_aeroplanes.list_info)
+
+
+
+
 #
 # aeroplanes = Aircraft_Creation().aeroplanes_list
 #
@@ -47,7 +51,9 @@ logger = logging.getLogger(__name__)
 # print(H_max)
 
 a1 = Airplane(*["39de4b", "France", 243.42, 10789.92])
-a2 = Airplane(*["36de4b", "Germany", 143.42, 1789.92])
+print(a1)
 
-aircraft_creation = Aircraft_Creation()
-print(aircraft_creation.comparison_by_speed_and_height(a2,a1))
+# a2 = Airplane(*["36de4b", "Germany", 143.42, 1789.92])
+#
+# aircraft_creation = Aircraft_Creation()
+# print(aircraft_creation.comparison_by_speed_and_height(a2,a1))

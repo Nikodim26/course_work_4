@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class APIAdapter(ABC):
-
+    """Шаблон для классов, работающих с api"""
     def __init__(self) -> None:
         self.url = None
 
