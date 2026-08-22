@@ -46,6 +46,6 @@ class Aircraft_Creation():
 
 
     def comparison_by_speed_and_height(self, airplane1:Airplane, airplane2:Airplane)->bool:
-        """Сравнивает самолеты по высоте полета и скорости"""
+        """Сравнивает самолеты по высоте полета и скорости. True, если airplane1 выше и быстрее"""
 
         return True if airplane1 > airplane2 else False
