@@ -1,10 +1,10 @@
 import logging
 from pathlib import Path
 
-from airplane import Airplane
+from adding_a_plane import Adding_Plane
 from api_aeroplanes import Api_Aeroplanes
 from api_coord import Api_Coord
-from working_with_aircraft import Working_with_Aircraft
+from write_file import Write_File
 
 log_path = Path(__file__).resolve().parent.parent / "logs" / "main.log"
 logging.basicConfig(
@@ -24,8 +24,10 @@ coordinates = api_coord.coordinates
 api_aeroplanes = Api_Aeroplanes(coordinates)
 print(api_aeroplanes.list_info)
 
-a = Working_with_Aircraft('aeroplanes.json',api_aeroplanes.list_info)
+a = Write_File('aeroplanes.json',api_aeroplanes.list_info)
 a.write_file()
+
+a=Adding_Plane('aeroplanes.json',api_aeroplanes.list_info)
 
 a.write_file_add("aaaa", "Germany", 143.42, 1789.92)
 
