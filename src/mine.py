@@ -4,7 +4,7 @@ from pathlib import Path
 from airplane import Airplane
 from api_aeroplanes import Api_Aeroplanes
 from api_coord import Api_Coord
-from aircraft_creation import Aircraft_Creation
+from working_with_aircraft import Working_with_Aircraft
 
 log_path = Path(__file__).resolve().parent.parent / "logs" / "main.log"
 logging.basicConfig(
@@ -17,15 +17,17 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# api_coord = Api_Coord("Germany")
-# coordinates = api_coord.coordinates
+api_coord = Api_Coord("Germany")
+coordinates = api_coord.coordinates
 # print(coordinates)
-#
-# api_aeroplanes = Api_Aeroplanes(coordinates)
-# print(api_aeroplanes.list_info)
 
+api_aeroplanes = Api_Aeroplanes(coordinates)
+print(api_aeroplanes.list_info)
 
+a = Working_with_Aircraft('aeroplanes.json',api_aeroplanes.list_info)
+a.write_file()
 
+a.write_file_add("aaaa", "Germany", 143.42, 1789.92)
 
 #
 # aeroplanes = Aircraft_Creation().aeroplanes_list
@@ -50,8 +52,8 @@ logger = logging.getLogger(__name__)
 # print(aeroplane_max.geo_altitude)
 # print(H_max)
 
-a1 = Airplane(*["39de4b", "France", 243.42, 10789.92])
-print(a1)
+# a1 = Airplane(*["39de4b", "France", 243.42, 10789.92])
+# print(a1)
 
 # a2 = Airplane(*["36de4b", "Germany", 143.42, 1789.92])
 #

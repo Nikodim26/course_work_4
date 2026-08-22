@@ -1,14 +1,17 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from pathlib import Path
 
 
 class Working_With_Files(ABC):
 
-    def __init__(self, file):
-        self.path=Path(__file__).resolve().parent.parent / "data" / file
+    def __init__(self, file, data):
+        self.file = file
+        self.data = data
 
+    @abstractmethod
     def write_file(self):
-       pass
+        pass
 
-    def reading_file(self):
-       pass
+    @abstractmethod
+    def write_file_add(self,*args):
+        pass
